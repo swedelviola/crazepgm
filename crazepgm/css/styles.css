@@ -1,0 +1,74 @@
+.nav-element-left{
+  position: absolute;
+right: 0;
+}
+
+.nav-pos{
+  position: relative;
+}
+.jumbotron{
+  padding: 70px 10px 20px 10px;
+  margin: 0px auto;
+  background: #fff;
+  color: black;
+}
+.contain{
+
+  margin: 0px;
+}
+div.card {
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+#contain-card{
+  padding: 50px 30px 50px 30px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+#contain-cards{
+  padding: 0px 30px 0px 30px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+#contain-row{
+
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.footer{
+  margin: 0px auto;
+  padding: 20px 0px 20px 0px;
+  background: #fff;
+}
+.address{
+  font-size: 80%;
+  margin: 0px;
+  color: #0f0f0f
+}
+.text-sec-headline-xs, .text-sub-headline {
+  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-family-text)
+}
+
+.text-sec-headline-xs {
+  letter-spacing: .6px;
+  font-size: 12px
+}
+
+.text-sec-headline-s, .text-sec-headline-xs {
+  color: #738f93;
+  text-transform: uppercase;
+  line-height: 1.4;
+  font-weight: 400
+}
+.tab-content {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+#text_compiler{
+  position: relative;
+  border: 5px solid #1C2434;
+}

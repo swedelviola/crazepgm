@@ -1,0 +1,111 @@
+body{
+  background-color: #F0F0F0;
+  font-family: "Lato", sans-serif;
+}
+.sidenav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 250px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #ffa852; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+  margin-top: 50px;
+}
+ 
+.container{
+  height : 75px;
+  margin-left:250px;
+}
+
+.container a{
+  font-size: 30px;
+  font-style: italic;
+}
+/* The navigation menu links */
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #232f34;
+  display: block;
+  font-style: italic;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+
+/* Style page content */
+.main {
+  margin-left: 250px; /* Same as the width of the sidebar */
+  padding: 0px 0px 0px 50px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.jumbotron{
+  margin-top:100px;
+  background-color: white;
+  font-size:15px;;
+  font-color:black;
+  height:20px;
+  width: 200px;
+}
+
+#contain-card{
+  font-size: 14px;
+  align-items: : center;
+}
+
+.main{
+  margin-top:120px;
+  font-size:14px;
+  text-align:left;
+}
+
+.main p{
+  font-size:25px;
+  font-style:oblique;
+
+}
+#jumbo{
+  margin-left: 160px;
+  width:70%;
+  height: 80%;
+  background:white;
+  color: #232f34;
+  border-color: black;
+  border-radius:20px;
+}
+
+.btn-primary{
+  background-color:#232f34;
+  color:#ffa852;
+}
+
+#replyNumber{
+  background-color: white;  
+
+}
+
+#log{
+  font-size:15px;
+}
+
+#text-arr{
+  background-color:#232f34;
+  color: white;
+}
+
+#hell{
+  color: white;
+}

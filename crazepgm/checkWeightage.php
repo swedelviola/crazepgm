@@ -9,14 +9,7 @@ $_SESSION['eid']=$eid;
 if($eid == null)
   header("Location : index.php");
 
-$conn = mysqli_connect('localhost', 'root', '');
-if (!$conn){
-    die("Database Connection Failed" . mysqli_error($conn));
-}
-$select_db = mysqli_select_db($conn, 'crazepgm');
-if (!$select_db){
-    die("Database Selection Failed" . mysqli_error($conn));
-}
+include 'connection.php';
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -34,7 +27,7 @@ if (!$select_db){
 
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="Dashboard.css"><div id="formFooter">
+  <link rel="stylesheet" href="css/Dashboard.css"><div id="formFooter">
   
   <title>Check weightage</title>
 </head>

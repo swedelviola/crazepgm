@@ -1,12 +1,11 @@
 <?php
-session_start();
 include 'connection.php';
 function break_line($program){
 $line=explode("\n",trim($program));
 return $line;
 }
 function break_words($line){
-	$wordss=explode(" ",trim($line));
+	$wordss=preg_split("/[;:(\s)]/",$line);
 	$c=count($wordss);
 	for($a=0;$a<$c;$a++){
 		if($wordss[$a]=="")
@@ -14,8 +13,11 @@ function break_words($line){
 	}
 	$words=array();
 	foreach($wordss as $word){
-	array_push($words,$word);
+		if(!empty($word))
+	    array_push($words,trim($word));
 	}
+	//$words contain space seperated;
+	//;,(,)
 	return $words;
 }
 function break_letters($word){
@@ -83,7 +85,6 @@ $letters=array();//will contain each character used in program
 $keywords=array("auto" => 0,"break"=> 0,"case"=> 50,"char"=> 0,"const"=> 0,"continue"=> 0,"default"=> 0,"do"=> 0,"double"=> 0,"else"=> 0,"enum"=> 0,"extern"=> 0,
 "float"=> 0,"for"=> 5000,"goto"=>100,"if"=> 0,"int"=> 0,"long"=> 0,"register"=> 0,"return"=> 0,"short"=> 0,"signed"=> 0,
 "sizeof"=> 0,"static"=> 0,"struct"=> 0,"switch"=> 500,"typedef"=> 0,"union"=> 0,"unsigned"=> 0,"void"=> 0,"volatile"=> 0,"while"=> 3000);
-$eid=$_SESSION['eid'];
 $query="select * from `weight` where e_id=$eid";
 $result=mysqli_query($connection,$query) or die(mysqli_error($connection));
 $row=mysqli_fetch_array($result);

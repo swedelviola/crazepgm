@@ -3,8 +3,9 @@
   include 'connection.php';
   session_start();
   $pid = $_GET['pid'];
-  $eid = $_SESSION['eid'];
-  $_SESSION['pid'] = $pid;
+  $_SESSION['pid']=$pid;
+  $eid=$_SESSION['eid'];
+  $uid=$_SESSION['uid'];
   $username = $_SESSION['username'];
   $_SESSION['username'] = $username;
   if($pid == null || $username == null)
@@ -22,15 +23,10 @@
       $sample_input=$row['sample_input'];
       $sample_output=$row['sample_output'];
       $eid=$row['e_id'];
-      $_SESSION['eid'] = $eid;
     }
   }
-  else
-  {
-    header("Location: DisplayError.php");
-  }
 
-
+//have hidden fields for pid eid uid
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -71,8 +67,11 @@ function ajax_post(){
     var url = "subcode.php";
     var code = document.getElementById("text").value;
     var ip = document.getElementById("textfield2").value;
-  var cbox=document.getElementById("cbox").value;
-    var vars = "text="+encodeURIComponent(code)+"&textfield2="+ip+"&cbox="+cbox;
+    var cbox=document.getElementById("cbox").value;
+  var uid=document.getElementById("uid").value;
+  var eid=document.getElementById("eid").value;
+  var pid=document.getElementById("pid").value;
+  var vars = "text="+encodeURIComponent(code)+"&textfield2="+ip+"&cbox="+cbox+"&eid="+eid+"&pid="+pid+"&uid="+uid;
     hr.open("POST", url, true);
     hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     hr.onreadystatechange = function() {
@@ -91,8 +90,11 @@ function ajax_run(){
     var url = "runcode.php";
     var code = document.getElementById("text").value;
     var ip = document.getElementById("textfield2").value;
-  var cbox=document.getElementById("cbox").value;
-    var vars = "text="+encodeURIComponent(code)+"&textfield2="+ip+"&cbox="+cbox;
+    var cbox=document.getElementById("cbox").value;
+  var uid=document.getElementById("uid").value;
+  var eid=document.getElementById("eid").value;
+  var pid=document.getElementById("pid").value;
+  var vars = "text="+encodeURIComponent(code)+"&textfield2="+ip+"&cbox="+cbox+"&eid="+eid+"&pid="+pid+"&uid="+uid;
     hr.open("POST", url, true);
     hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     hr.onreadystatechange = function() {
@@ -119,7 +121,7 @@ function ajax_run(){
           <li class="nav-item  active"><a class="nav-link" href="/index.html"> Events</a></li>
           <li class="nav-item"><a class="nav-link" href="#"> Rules</a></li>
           <li class="nav-item"><a class="nav-link" href="#">CLock</a></li>
-          <li class="nav-item dropdown nav-element-left"><a class="nav-link drop-down-toggle" href="#" id="navbardrop" data-toggle="dropdown"><span class="fa fa-user"></span> Username</a>
+          <li class="nav-item dropdown nav-element-left"><a class="nav-link drop-down-toggle" href="#" id="navbardrop" data-toggle="dropdown"><span class="fa fa-user"></span> <?php echo $_SESSION['username']; ?></a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">.</a>
               <a class="dropdown-item" href="#">.</a>
@@ -189,9 +191,23 @@ function ajax_run(){
         <textarea class="form-control col-12" id="text_compiler" aria-label="With textarea" style="background:#1C2434">
         </textarea>
       </div> -->
-      <div id="editor">
+      <div id="editor"><?php
+      $query="select lastcode from `code_table` where u_id=$uid and e_id=$eid and p_id=$pid";
+      if($result=mysqli_query($connection,$query))
+      {
+        $c=mysqli_num_rows($result);
+        if($c!=0)
+        {
+          $row=mysqli_fetch_assoc($result);
+          echo nl2br($row['lastcode']);
+        }
+      }
+    ?>
    </div>
 <!-- do not open a form -->
+<input type="hidden" name="uid" id="uid" value=<?php echo $uid; ?> >
+<input type="hidden" name="pid" id="pid" value=<?php echo $pid; ?> >
+<input type="hidden" name="eid" id="eid" value=<?php echo $eid; ?> >
 <input type="hidden" name="text" id="text"><br>
 <input type="hidden" name="cbox" id="cbox" value="0">
 <input type="checkbox" name="checkbox" id="checkbox" onchange="toggleTextArea();" value="0"> Click here to provide custom input
@@ -206,6 +222,7 @@ function ajax_run(){
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
     editor.session.setMode("ace/mode/c_cpp");
+  editor.setShowPrintMargin(false);
   editor.gotoLine(1,1); 
   //editor.setValue("#include<stdio.h>\n#include<ctype.h>");
     var formObj = document.getElementById('text');
