@@ -1,0 +1,281 @@
+<?php 
+
+	session_start();
+	include 'connection.php';
+	//$p_id = $_SESSION['p_id'];	uncomment this after pipeline
+	//$e_id = $_SESSION['e_id'];			"
+	//$_SESSION['p_id']=$p_id;				"
+	//$_SESSION['e_id']=$e_id;				"
+
+	//AAYUSH
+
+ ?>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/Dashboard.css">
+  <script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
+  <title>Change weightage</title>
+</head>
+<body>
+
+	<nav class="navbar navbar-dark navbar-expand-sm fixed-top" style="background:#232f34">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#" style="color:#ffa852">Crazy Programming <br><h3 >Admin</h3> </a>
+      <li>
+        <a onClick="logout()" id="log" href="Login.html" class="navbar-brand pull-right" style="color:#F0F0F0"  >Logout</a>
+    </li>
+    </div>
+  </nav>
+
+
+  <div class="sidenav">
+    <br><br>
+  <a href="Dashboard.html" >Leaderboard</a><br>
+  <a href="Event.html">Upcoming events</a><br>
+  <a href="Addcomp.html">Add Competition</a><br>
+  <a href="weitage.html" active id="hell">Change weightage</a><br>
+  <a href="Wei.html">Current weightage</a><br>
+</div>
+<br>
+<br>
+<div class="main">
+	<div class="jumbotron" id="jumbo">
+	<p> Set the weightage of the following Symbols/Pattern/Keyword:</p><br>
+	<form action="weightageinput.php" method="POST">
+		<div class="form-group row">
+	  		<label for="if-else" class="col-sm-2 col-form-label">Alphabets</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="10" min="0" value="10" name="alphabets">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="arithmetic-operator" class="col-sm-2 col-form-label">Arithmetic Operators</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="1000" min="0" value="1000" name="arithmetic_operator">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="assignment-operator" class="col-sm-2 col-form-label">Assignment Operator</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="5" min="0" value="5" name="assignment_operator">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="bitwise-operator" class="col-sm-2 col-form-label">Bitwise Operator</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="10" min="0" value="10" name="bitwise_operator">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="digits" class="col-sm-2 col-form-label">Digits</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="100" min="0" value="100" name="digits">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="dollar" class="col-sm-2 col-form-label">Dollar</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="10" min="0" value="10" name="dollar">
+		</div>
+
+		<div class="form-group row">
+	    	<label for="underscore" class="col-sm-2 col-form-label">Underscore</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="10" min="0" value="10" name="underscore">
+	  	</div>
+
+	  	<div class="form-group row">
+	  		<label for="relational-operator" class="col-sm-2 col-form-label">Relational Operators</label><br>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="50" min="0" value="50" name="relational_operator">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="if-else" class="col-sm-2 col-form-label">auto</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="auto">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="if-else" class="col-sm-2 col-form-label">break</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="break">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="case" class="col-sm-2 col-form-label">case</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="50" min="0" value="50" name="case">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="if-else" class="col-sm-2 col-form-label">char</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="char">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="if-else" class="col-sm-2 col-form-label">const</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="const">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="if-else" class="col-sm-2 col-form-label">continue</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="continue">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="if-else" class="col-sm-2 col-form-label">default</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="default">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="if-else" class="col-sm-2 col-form-label">do</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="do">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="if-else" class="col-sm-2 col-form-label">double</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="double">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="if-else" class="col-sm-2 col-form-label">else</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="else">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="if-else" class="col-sm-2 col-form-label">enum</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="enum">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="if-else" class="col-sm-2 col-form-label">extern</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="extern">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="if-else" class="col-sm-2 col-form-label">float</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="float">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="for" class="col-sm-2 col-form-label">for</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="5000" min="0" value="5000" name="for">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="goto" class="col-sm-2 col-form-label">goto</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="100" min="0" value="100" name="goto">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="if-else" class="col-sm-2 col-form-label">if</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="if">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="if-else" class="col-sm-2 col-form-label">int</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="int">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="if-else" class="col-sm-2 col-form-label">long</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="long">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="if-else" class="col-sm-2 col-form-label">register</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="register">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="if-else" class="col-sm-2 col-form-label">return</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="return">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="if-else" class="col-sm-2 col-form-label">short</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="short">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="switch" class="col-sm-2 col-form-label">signed</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="signed">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="switch" class="col-sm-2 col-form-label">sizeof</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="sizeof">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="switch" class="col-sm-2 col-form-label">static</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="static">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="switch" class="col-sm-2 col-form-label">struct</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="struct">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="switch" class="col-sm-2 col-form-label">switch</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="500" min="0" value="500" name="switch">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="switch" class="col-sm-2 col-form-label">typedef</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="typedef">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="switch" class="col-sm-2 col-form-label">union</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="union">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="switch" class="col-sm-2 col-form-label">unsigned</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="unsigned">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="switch" class="col-sm-2 col-form-label">void</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="void">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="switch" class="col-sm-2 col-form-label">volatile</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="0" min="0" value="0" name="volatile">
+		</div>
+
+		<div class="form-group row">
+	  		<label for="while" class="col-sm-2 col-form-label">while</label>
+	    	<input type="number" id="replyNumber" data-bind="value:replyNumber" placeholder="3000" min="0" value="3000" name="while">
+		</div>
+
+		
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</div>
+</div>
+<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+<?php 
+
+	
+
+ ?>
