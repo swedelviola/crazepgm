@@ -26,6 +26,7 @@ if(!empty($_POST['username']) and !empty($_POST['password']) and !empty($_POST['
 			$d=uniqid();
             $c=$a+$b+54636;
 			$c=$c.$d;
+		$c=1;
 		   $query=$connection->prepare("insert into `user`(name,email_id,password,verified) values(?,?,?,?) ");
 		   $query->bind_param('ssss',$name,$username,$password,$c);
 		   if($query->execute()){
