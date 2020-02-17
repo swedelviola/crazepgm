@@ -2,13 +2,13 @@
 <?php
 session_start();
 $username = $_SESSION['username'];
-$_SESSION['username'] = $username;
 $eid = $_GET['eid'];
-$_SESSION['eid']=$eid;
-if($eid == null || $username == null)
-  header("Location: index.php");
+if($eid == null)
+  header("Location: errorQuestion.php");
+if( $username == null)
+  header("Location: errorLoginPage.php");
 include("connection.php");
-
+$_SESSION['eid']=$eid;
 
 // date_default_timezone_set("India");
 $current_date=date("Y-m-d H:i:s");
@@ -17,6 +17,10 @@ $current_date=date("Y-m-d H:i:s");
 	$sql = "SELECT * FROM problem where e_id=$eid";
 	$result = mysqli_query($db,$sql);
 	$rowcount=mysqli_num_rows($result);
+  if($rowcount == 0)
+  {
+    header("Location: errorQuestion.php");
+  }
 	//echo $rowcount;
 	$sql1 ="SELECT * FROM problem where e_id=$eid ORDER BY p_id LIMIT 0,1";
 	$result1 = mysqli_query($db,$sql1);
@@ -49,12 +53,12 @@ $current_date=date("Y-m-d H:i:s");
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#" style="color:#f9AA33">Crazy</a>
+      <a class="navbar-brand" href="index.php" style="color:#f9AA33">Crazy</a>
       <div class="collapse navbar-collapse nav-pos" id="Navbar">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item"><a class="nav-link" href="#">Leaderboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="leaderboard.php">Leaderboard</a></li>
           <li class="nav-item active"><a class="nav-link" href="#"> Events</a></li>
-          <li class="nav-item"><a class="nav-link" href="checkWeightage.php">Check Weightage</a></li>
+          <li class="nav-item"><a class="nav-link" href="test.php">Check Weightage</a></li>
           <li class="nav-item"><a class="nav-link" href="#">CLock</a></li>
           <li class="nav-item dropdown nav-element-left"><a class="nav-link drop-down-toggle" href="#" id="navbardrop" data-toggle="dropdown"><span class="fa fa-user"></span> <?php echo $username; ?></a>
             <div class="dropdown-menu">
@@ -72,7 +76,9 @@ $current_date=date("Y-m-d H:i:s");
     <div class="container">
       <div class="row row-header">
         <div class="col-12 col-sm-6">
-          <h1>Dashbord</h1>
+          <h1>Problems</h1>
+          <br>
+          <h4>Event-id: <?php echo $eid ?></h4>
         </div>
         <div class="col-12 col-sm">
         </div>
@@ -86,7 +92,7 @@ $current_date=date("Y-m-d H:i:s");
       <div class="col-md-4">
         <div class="card " style="margin:15px">
           <div class="card-body">
-            <h2 class="ui-title text-sec-headline-xs"><?php echo $row['pname'] ?></h2>
+            <h2 class="ui-title text-sec-headline-xs"><?php echo "Qid: ".$row['p_id']; ?></h2>
             <h3 class="base-card-title" title="Interview Preparation Kit" id="base-card-1" style="color:#000000"><?php echo $row['pname'] ?></h3>
              <div class="row">
               <div class="col-sm-6">

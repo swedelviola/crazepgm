@@ -5,7 +5,11 @@ session_start();
 $username = $_SESSION['username'];
 $_SESSION['username'] = $username;
 if($username == null)
-  header("Location: Login&Registration.php");
+{
+  $username = $_GET['username'];
+  if($username == 0)
+    header("Location: Login&Registration.php");
+}
 include("connection.php");
 
 
@@ -107,7 +111,7 @@ $result4 = mysqli_query($db,$sql2);
       <a class="navbar-brand" href="#" style="color:#f9AA33">Crazy</a>
       <div class="collapse navbar-collapse nav-pos" id="Navbar">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item "><a class="nav-link" href="#">Leaderboard</a></li>
+          <li class="nav-item "><a class="nav-link" href="leaderboard.php">Leaderboard</a></li>
           <li class="nav-item active"><a class="nav-link" href="#"> Events</a></li>
           <li class="nav-item"><a class="nav-link" href="#"> Rules</a></li>
           <li class="nav-item"><a class="nav-link" href="#"><?php echo $current_date; ?></a></li>
@@ -146,7 +150,7 @@ $result4 = mysqli_query($db,$sql2);
 	          </div>
 	          <div class="card-body">
 
-	            <h3 class="base-card-title" title="Interview Preparation Kit" id="base-card-1" style="color:#000000"><?php echo $row['ename']; ?></h3>
+	            <h3 class="base-card-title" title="Interview Preparation Kit" id="base-card-1" style="color:#000000"><?php echo $row['e_id'].": ".$row['ename']; ?></h3>
 
 	            <div class="progress" style="height:5px">
 	              <div class="progress-bar" role="progressbar" style="width: 4%;height:5px;background:#000000" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>

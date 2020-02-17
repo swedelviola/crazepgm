@@ -72,7 +72,7 @@ $current_date=date("Y-m-d H:i:s");
 
   <div  style="background:#F3F7F7">
     <div class="row" id="contain-card">
-      
+			
       <div class="main">
     <table class="table">
       <thead>

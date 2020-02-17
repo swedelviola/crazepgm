@@ -1,16 +1,16 @@
 <?php 
-
+//make the slides proper It should be not visible
   include 'connection.php';
   session_start();
   $pid = $_GET['pid'];
-  $_SESSION['pid']=$pid;
   $eid=$_SESSION['eid'];
   $uid=$_SESSION['uid'];
   $username = $_SESSION['username'];
-  $_SESSION['username'] = $username;
-  if($pid == null || $username == null)
-    header("Location: index.php");
-  
+  if($pid == null)
+    header("Location: errorQuestion.php");
+  if($username == null)
+    header("Location: errorLoginPage.php");
+  $_SESSION['pid']=$pid;
   $sql="SELECT * FROM `problem` WHERE p_id = $pid";
   $result = $con->query($sql);
   if ($result->num_rows > 0)
@@ -24,6 +24,10 @@
       $sample_output=$row['sample_output'];
       $eid=$row['e_id'];
     }
+  }
+  else
+  {
+    header("Location: errorQuestion.php");
   }
 
 //have hidden fields for pid eid uid
@@ -114,7 +118,7 @@ function ajax_run(){
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#" style="color:#f9AA33">Crazy</a>
+      <a class="navbar-brand" href="index.php" style="color:#f9AA33">Crazy</a>
       <div class="collapse navbar-collapse nav-pos" id="Navbar">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><a class="nav-link" href="#">Leaderboard</a></li>
@@ -136,7 +140,9 @@ function ajax_run(){
     <div class="container">
       <div class="row row-header">
         <div class="col-12 col-sm-6">
-          <h1>Dashbord</h1>
+          <h1>Solve Question</h1>
+          <br>
+          <h4>Event-id: <?php echo $eid ?></h1>
         </div>
         <div class="col-12 col-sm">
         </div>
@@ -147,24 +153,92 @@ function ajax_run(){
     <div class="container">
       <ul class="nav nav-tabs" style="background:#fff">
         <li class="nav-item">
-          <a class="nav-link active" href="#question" role="tab" data-toggle="tab"><b>Question</b></a>
+          <a class="nav-link active" href="#question" role="tab1" data-toggle="tab"><b>Question</b></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#leaderbord" role="tab" data-toggle="tab"><b>Leaderbord</b></a>
+          <a class="nav-link" href="#leaderboard" role="tab2" data-toggle="tab"><b>Leaderbord</b></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#submission" role="tab" data-toggle="tab"><b>Submission</b></a>
+          <a class="nav-link" href="#submission" role="tab3" data-toggle="tab"><b>Submission</b></a>
         </li>
       </ul>
       <div class="tab-content"  style="background:#fff">
-        <div role="tabpanel" class="tab-pane fade show active" id="question">
+      <div role="tabl" class="tab-pane fade show active" id="question">
           <h3>Question id: <small><?php echo $pid; ?></small></h3>
           <p><?php echo nl2br($pname); ?></p> <br>
           <p><?php echo nl2br($description); ?></p><br>
           <p><?php echo nl2br($constraints); ?></p><br>
           <p><?php echo nl2br($sample_input); ?></p><br>
           <p><?php echo nl2br($sample_output); ?></p>
+      </div>
+      <div role="tabpane2" class="tab-pane fade show active" id="leaderboard">
+        <?php $stm1="SELECT FIND_IN_SET(pscore, ( SELECT GROUP_CONCAT( pscore ORDER BY pscore) FROM code_table ) ) AS rank FROM code_table where u_id = $uid";
+          $result = $con->query($stm1);
+          if ($result->num_rows > 0)
+          {
+            while($row = $result->fetch_assoc())
+            { ?>
+          <h3>Leaderboard <br><br><small>Your Rank is: <?php echo $row["rank"]; }?><br></small></h3>
+          <?php }else
+          {
+            echo "<h3> You have not submitted yet. Code NOW!!";
+          } ?><br>
+            
+
+            <div class="main">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Serial No</th>
+          <th scope="col">Name</th>
+          <th scope="col">Program Weightage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+  //STARTED HERE
+        $srl_no=1;
+        $stm="SELECT u.name,c.pscore from user u, code_table c where c.u_id = u.u_id order by pscore";
+        $result=mysqli_query($conn,$stm) or die(mysqli_error($conn));
+        $r=mysqli_num_rows($result);
+                  if ($r <= 0)
+                    echo "<h3> NO SUBMISSIONS YET<h3>";
+                    else {
+                     while($row = mysqli_fetch_assoc($result)) {        ?>
+                    
+        <tr>
+          <td><?php echo ($srl_no++); ?></td>
+        <td><?php echo $row['name'] ?></td>
+        <td><?php echo $row['pscore']?></td>
+    </tr>
+    <?php }} ?>
+      </tbody>
+    </table>
+
+      </div>
+  </div>
+
+<!-- ENDS HERE -->
+          </p>
         </div>
+        <div role="tabpane3" class="tab-pane fade show active" id="submission">
+          <h3>Submission <br><small>Least Weight correct code:</small></h3>
+          <p>
+            <?php
+              $query="select code from `code_table` where u_id=$uid and e_id=$eid and p_id=$pid";
+              if($result=mysqli_query($connection,$query))
+              {
+                $c=mysqli_num_rows($result);
+                if($c!=0)
+                {
+                  $row=mysqli_fetch_assoc($result);
+                  echo nl2br($row['code']);
+                }
+              }
+            ?>
+          </p>
+        </div>
+        
         <!--<div role="tabpane2" class="tab-pane " id="leaderbord">
           <h3>leaderbord <small>.....</small></h3>
           <p> ... </p>
@@ -172,7 +246,7 @@ function ajax_run(){
         <div role="tabpane3" class="tab-pane " id="submission">
           <h3>Submission <small>.....</small></h3>
           <p> ... </p>-->
-        </div>
+        
       </div>
     </div>
      <div class="container" style="margin:50px auto">
