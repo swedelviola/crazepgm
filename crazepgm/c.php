@@ -8,7 +8,8 @@ function errorHandleC($error){
 }
     //putenv("PATH=C:\Program Files (x86)\CodeBlocks\MinGW\bin");#cpmment for linux
 	$CC="gcc";
-	$out="timeout 5s ./a.out";//change to a.out for linux
+	$unid=uniqid();
+	$out="timeout 5s ./main".$unid;//change to a.out for linux
 	$code=htmlentities($_POST["text"]);
 	$weight=parse_program(html_entity_decode($code));
 	if(empty(trim($code))){
@@ -17,7 +18,6 @@ function errorHandleC($error){
 	}
 	$uid=$_POST['uid'];
 	$input=$_POST["textfield2"];
-	$unid=uniqid();
 	$cbox=$_POST['cbox'];
 	$filename_code="main".$unid.".c";
 	$sample_code="sample".$unid.".c";
@@ -25,8 +25,8 @@ function errorHandleC($error){
 	$sample_in="sample".$unid.".txt";
 	$filename_error="error".$unid.".txt";
 	$sample_error="sampleerr".$unid.".txt";
-	$executable="a.out";	
-	$command1=$CC." -lm ".$filename_code;
+	$executable="main".$unid;	
+	$command1=$CC." -lm ".$filename_code." -o main".$unid;
     $command2=$CC." -lm ".$sample_code;
 	$command1_error=$command1." 2>".$filename_error;
 	$command2_error=$command2." 2>".$sample_error;
