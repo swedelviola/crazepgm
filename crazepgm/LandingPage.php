@@ -32,7 +32,7 @@
           <li><a href="#home">Home</a></li>
         <li><a href="index.php"><?php if($username == null){echo "SIGN IN / SIGN UP";} else{ echo "Dashboard";} ?></a></li> 
         <li><a href="#about">About</a></li>
-<!--        <li><a href='#rules'>Rules</a></li>  -->
+        <li><a href='#rules'>Rules</a></li>
         <li><a href="#sponsors">Sponsors</a></li>
           <li><a href="#contact">Contact</a></li>
           <?php if($username!=null)
