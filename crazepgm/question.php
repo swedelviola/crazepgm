@@ -219,8 +219,7 @@ function ajax_run(){
   </div>
 
 <!-- ENDS HERE -->
-          </p>
-        </div>
+          
         <div role="tabpane3" class="tab-pane fade show active" id="submission">
           <h3>Submission <br><small>Least Weight correct code:</small></h3>
           <p>

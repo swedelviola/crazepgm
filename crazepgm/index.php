@@ -2,16 +2,21 @@
 <?php
 
 session_start();
-$username = $_SESSION['username'];
-$_SESSION['username'] = $username;
+$username =$_SESSION['username'];
 if($username == null)
 {
   $username = $_GET['username'];
-  if($username == 0)
+  if($username == '0')
+  {
     header("Location: Login&Registration.php");
+  }
+  else
+  {
+    header("Location: errorLoginPage.php");
+  }
 }
 include("connection.php");
-
+$_SESSION['username'] = $username;
 
 date_default_timezone_set("Asia/Dhaka");
 $current_date=date("Y-m-d H:i:s");
