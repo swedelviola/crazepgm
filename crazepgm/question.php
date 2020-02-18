@@ -178,7 +178,7 @@ function ajax_run(){
           {
             while($row = $result->fetch_assoc())
             { ?>
-          <h3>Leaderboard <br><br><small>Your Rank is: <?php echo $row["rank"]; }?><br></small></h3>
+          <h3>Question Leaderboard: <br><br><small>Your current Rank is: <?php echo $row["rank"]; }?><br></small></h3>
           <?php }else
           {
             echo "<h3> You have not submitted yet. Code NOW!!";
