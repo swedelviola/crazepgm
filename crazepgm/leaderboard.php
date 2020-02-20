@@ -79,7 +79,8 @@ $current_date=date("Y-m-d H:i:s");
     <div class="container">
       <div class="row row-header">
         <div class="col-12 col-sm-6">
-          <?php $stm1="SELECT FIND_IN_SET(pscore, ( SELECT GROUP_CONCAT( pscore ORDER BY pscore) FROM code_table ) ) AS rank FROM code_table where u_id = $uid";
+          <h1>Event Leaderboard</h1>
+          <?php /*$stm1="SELECT FIND_IN_SET(pscore, ( SELECT GROUP_CONCAT( pscore ORDER BY pscore) FROM code_table ) ) AS rank FROM code_table where u_id = $uid";
           $result = $con->query($stm1);
           if ($result->num_rows > 0)
           {
@@ -89,7 +90,7 @@ $current_date=date("Y-m-d H:i:s");
           <?php }else
           {
             echo "<h3> You have not submitted yet. Code NOW!!";
-          } ?><br>
+          } */?><br>
             
 
             <div class="main">
@@ -98,14 +99,14 @@ $current_date=date("Y-m-d H:i:s");
         <tr>
           <th scope="col">Serial No</th>
           <th scope="col">Name</th>
-          <th scope="col">Program Weightage</th>
+          <th scope="col">Total Weightage</th>
         </tr>
       </thead>
       <tbody>
         <?php
   //STARTED HERE
         $srl_no=1;
-        $stm="SELECT u.name,c.pscore from user u, code_table c where c.u_id = u.u_id order by pscore";
+        $stm="SELECT u.name, sum(pscore) from code_table c, user u where u.u_id = c.u_id GROUP by c.u_id, c.p_id";
         $result=mysqli_query($conn,$stm) or die(mysqli_error($conn));
         $r=mysqli_num_rows($result);
                   if ($r <= 0)
@@ -116,7 +117,7 @@ $current_date=date("Y-m-d H:i:s");
         <tr>
           <td><?php echo ($srl_no++); ?></td>
         <td><?php echo $row['name'] ?></td>
-        <td><?php echo $row['pscore']?></td>
+        <td><?php echo $row['sum(pscore)']?></td>
     </tr>
     <?php }} ?>
       </tbody>
