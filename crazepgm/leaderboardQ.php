@@ -136,7 +136,7 @@ $result4 = mysqli_query($db,$sql2);
     <div class="container">
       <div class="row row-header">
         <div class="col-12 col-sm-6">
-          <h1>Events Dashbord</h1>
+          <h1>Events Leaderboard</h1>
         </div>
         <div class="col-12 col-sm">
         </div>
@@ -165,7 +165,7 @@ $result4 = mysqli_query($db,$sql2);
                 <div class="row">
 	              <div class="col-sm-6">
                   <?php $eid = $row['e_id']; ?>
-	                <a href="practice.php?eid=<?php echo $eid; ?>" class="btn btn-primary btn-block border-0" style="background:#f9AA33"><b>Continue Practice</b></a>
+	                <a href="leaderboard.php?eid=<?php echo $eid; ?>" class="btn btn-primary btn-block border-0" style="background:#f9AA33"><b>Leaderboard --></b></a>
 	              </div>
 	            </div>
 	          </div>
@@ -203,7 +203,7 @@ $result4 = mysqli_query($db,$sql2);
              <div class="row">
               <div class="col-sm-6">
                 <?php $eid = $row2['e_id']; ?>
-                  <a href="practice.php?eid=<?php echo $eid; ?>" class="btn btn-primary btn-block border-0" style="background:#f9AA33"><b>Continue Practice</b></a>
+                  <a href="leaderboard.php?eid=<?php echo $eid; ?>" class="btn btn-primary btn-block border-0" style="background:#f9AA33"><b>Leaderboard --></b></a>
                </div>
             </div>
           </div>
@@ -230,7 +230,7 @@ $result4 = mysqli_query($db,$sql2);
              <div class="row">
               <div class="col-sm-6">
                 <?php $eid = $row2['e_id']; ?>
-                  <a href="practice.php?eid=<?php echo $eid; ?>" class="btn btn-primary btn-block border-0 " style="background:#f9AA33"><b>Continue Practice</b></a>
+                  <a href="leaderboard.php?eid=<?php echo $eid; ?>" class="btn btn-primary btn-block border-0 " style="background:#f9AA33"><b>Leaderboard --></b></a>
                </div>
             </div>
           </div>
