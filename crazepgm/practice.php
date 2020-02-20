@@ -56,7 +56,7 @@ $current_date=date("Y-m-d H:i:s");
       <a class="navbar-brand" href="index.php" style="color:#f9AA33">Crazy</a>
       <div class="collapse navbar-collapse nav-pos" id="Navbar">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item"><a class="nav-link" href="leaderboard.php">Leaderboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="leaderboard.php">leaderboardQ</a></li>
           <li class="nav-item active"><a class="nav-link" href="#"> Events</a></li>
           <li class="nav-item"><a class="nav-link" href="test.php">Check Weightage</a></li>
           <li class="nav-item"><a class="nav-link" href="#">CLock</a></li>

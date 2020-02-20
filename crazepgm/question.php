@@ -121,9 +121,9 @@ function ajax_run(){
       <a class="navbar-brand" href="index.php" style="color:#f9AA33">Crazy</a>
       <div class="collapse navbar-collapse nav-pos" id="Navbar">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item"><a class="nav-link" href="#">Leaderboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="leaderboardQ">Leaderboard</a></li>
           <li class="nav-item  active"><a class="nav-link" href="/index.html"> Events</a></li>
-          <li class="nav-item"><a class="nav-link" href="#"> Rules</a></li>
+          <li class="nav-item"><a class="nav-link" href="LandingPage.php#rules"> Rules</a></li>
           <li class="nav-item"><a class="nav-link" href="#">CLock</a></li>
           <li class="nav-item dropdown nav-element-left"><a class="nav-link drop-down-toggle" href="#" id="navbardrop" data-toggle="dropdown"><span class="fa fa-user"></span> <?php echo $_SESSION['username']; ?></a>
             <div class="dropdown-menu">
