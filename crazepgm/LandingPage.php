@@ -30,7 +30,7 @@
   <nav class="navbar">
       <ul>
           <li><a href="#home">Home</a></li>
-        <li><a href="index.php?$username=0"><?php if($username == null){echo "SIGN IN / SIGN UP";} else{ echo "Dashboard";} ?></a></li> 
+        <li><a href="index.php?$username=<?php echo "0"; ?>"><?php if($username == null){echo "SIGN IN / SIGN UP";} else{ echo "Dashboard";} ?></a></li> 
         <li><a href="#about">About</a></li>
         <li><a href='#rules'>Rules</a></li>
         <li><a href="#sponsors">Sponsors</a></li>

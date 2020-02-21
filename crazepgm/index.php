@@ -6,7 +6,7 @@ $username =$_SESSION['username'];
 if($username == null)
 {
   $username = $_GET['username'];
-  if($username == '0')
+  if($username == 0)
   {
     header("Location: Login&Registration.php");
   }
