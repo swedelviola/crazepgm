@@ -121,8 +121,8 @@ function ajax_run(){
       <a class="navbar-brand" href="index.php" style="color:#f9AA33">Crazy</a>
       <div class="collapse navbar-collapse nav-pos" id="Navbar">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item"><a class="nav-link" href="leaderboardQ">Leaderboard</a></li>
-          <li class="nav-item  active"><a class="nav-link" href="/index.html"> Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="leaderboardQ.php">Leaderboard</a></li>
+          <li class="nav-item  active"><a class="nav-link" href="index.php"> Events</a></li>
           <li class="nav-item"><a class="nav-link" href="LandingPage.php#rules"> Rules</a></li>
           <li class="nav-item"><a class="nav-link" href="#">CLock</a></li>
           <li class="nav-item dropdown nav-element-left"><a class="nav-link drop-down-toggle" href="#" id="navbardrop" data-toggle="dropdown"><span class="fa fa-user"></span> <?php echo $_SESSION['username']; ?></a>
@@ -172,7 +172,7 @@ function ajax_run(){
           <p><?php echo nl2br($sample_output); ?></p>
       </div>
       <div role="tabpane2" class="tab-pane fade show active" id="leaderboard">
-        <?php $stm1="SELECT FIND_IN_SET(pscore, ( SELECT GROUP_CONCAT( pscore ORDER BY pscore) FROM code_table ) ) AS rank FROM code_table where u_id = $uid";
+        <?php $stm1="SELECT FIND_IN_SET(pscore, ( SELECT GROUP_CONCAT( pscore ORDER BY pscore) FROM code_table ) ) AS rank FROM code_table where u_id = $uid and p_id = $pid";
           $result = $con->query($stm1);
           if ($result->num_rows > 0)
           {
@@ -198,7 +198,7 @@ function ajax_run(){
         <?php
   //STARTED HERE
         $srl_no=1;
-        $stm="SELECT u.name,c.pscore from user u, code_table c where c.u_id = u.u_id order by pscore";
+        $stm="SELECT u.name,c.pscore from user u, code_table c where c.u_id = u.u_id and c.p_id = $pid order by pscore";
         $result=mysqli_query($conn,$stm) or die(mysqli_error($conn));
         $r=mysqli_num_rows($result);
                   if ($r <= 0)
