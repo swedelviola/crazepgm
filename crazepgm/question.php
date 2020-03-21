@@ -171,7 +171,7 @@ function ajax_run(){
           <p><?php echo nl2br($sample_input); ?></p><br>
           <p><?php echo nl2br($sample_output); ?></p>
       </div>
-      <div role="tabpane2" class="tab-pane fade show active" id="leaderboard">
+      <div role="tab2" class="tab-pane fade show active" id="leaderboard">
         <?php $stm1="SELECT FIND_IN_SET(pscore, ( SELECT GROUP_CONCAT( pscore ORDER BY pscore) FROM code_table ) ) AS rank FROM code_table where u_id = $uid and p_id = $pid";
           $result = $con->query($stm1);
           if ($result->num_rows > 0)
@@ -220,7 +220,7 @@ function ajax_run(){
 
 <!-- ENDS HERE -->
           
-        <div role="tabpane3" class="tab-pane fade show active" id="submission">
+        <div role="tab3" class="tab-pane fade show active" id="submission">
           <h3>Submission <br><small>Least Weight correct code:</small></h3>
           <p>
             <?php
