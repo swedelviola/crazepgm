@@ -60,8 +60,8 @@ require 'connection.php';
 <label>Choose the event name:</label><br><br>
 <div class="form-check">
   <?php
-  $sel="SELECT ename from event";    //quesry to reterive event names to be display
-  $res=mysqli_query($conn,$sel) or die(mysqli_error($result));
+  $sel="SELECT ename from event";    //query to reterive event names to be display
+  $res=mysqli_query($conn,$sel) or die(mysqli_error($conn));
   $r=mysqli_num_rows($res);
                   if ($r > 0) {
 // output data of each row
